@@ -1,0 +1,63 @@
+import csv
+import numpy as np
+import matplotlib.pyplot as plt
+import string
+
+training_examples = []
+def bikes():
+    with open('train.csv', 'rb') as f:
+        csv_f = csv.reader(f)
+        feature_names = csv_f.next()
+        for row in csv_f:
+            training_examples.append(row)
+        print "Feature names:"
+        print feature_names
+
+        print "\n\nSome training examples:"
+        for i in xrange(20):
+            print training_examples[i]
+
+data=[]
+global a
+def descent():
+    with open('ex1data1.csv','rb') as f:
+        csv_f=csv.reader(f)
+        for line in csv_f:
+            data.append(line)
+        for i in xrange(20):
+            print data[i];
+def processData():
+        a= np.genfromtxt("ex1data1.csv",delimiter=",")
+        global X,y
+        X=a[:,0]
+        y=a[:,1]
+        m=np.size(X)
+        print m
+        plotData(X,y)
+        X=hstack((np.ones(m,1),X))
+    
+def plotData(X,y):
+    fig=plt.figure()
+    plt.scatter(X,y,s=80,marker='+',c='r')
+    fig.suptitle('test title')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    fig.savefig('test.jpg')
+
+def computeCost(X,y,theta):
+    X=data[:,0]
+    y=data[:,1]
+    print X
+    print y
+#a=np.array(training_examples);
+#w=a[:,5];
+#w=list(w);
+#w=map(string.atof,w);
+#c=a[:,-1];
+#c=list(c);
+#c=map(string.atof,c);
+#plt.plot(w,c);
+
+if __name__ == "__main__":    
+    #bikes()
+    processData()
